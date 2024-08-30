@@ -2,11 +2,12 @@ class Solution(object):
     def canConstruct(self, ransomNote, magazine):
         data  ={}
         for l in ransomNote:
-            data[l] =( data[l] + 1) if l in data.keys() else 1
-        print(data)
+            data[l] =data.get(l,0)+1
         for l in magazine:
             if l in data:
-                data[l] = (data[l] -1 ) if data[l] > 0 else  0
-        return not any(list(data.values()))
+                data[l] = data[l]-1
+                if data[l] == 0:
+                    del data[l] 
+        return not data
 
           
