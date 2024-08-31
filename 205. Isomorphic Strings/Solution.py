@@ -1,16 +1,14 @@
 class Solution(object):
     def isIsomorphic(self, s, t):
-        data ={}
-        data1 ={}
-        for i in range(len(s)):
-            if s[i] in data:
-                if data[s[i]] != t[i]:
+        data = {}
+        mapped = set()  
+        for c1,c2 in zip(s,t):
+            if c1 in data:
+                if data[c1] != c2:
                     return False
             else:
-                data[s[i]] = t[i] 
-            if t[i] in data1:
-                if data1[t[i]] != s[i]:
+                if c2 in mapped:
                     return False
-            else:
-                data1[t[i]] = s[i] 
+                data[c1] = c2
+                mapped.add(c2)
         return True
